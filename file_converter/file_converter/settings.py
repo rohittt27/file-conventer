@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-hh5*4gqo21en#e4d=+zmwv0(z7%x3b-5x$vnr5@6@5rnn2ewo7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -120,8 +120,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

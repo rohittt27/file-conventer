@@ -1,25 +1,27 @@
-# Base image
 FROM python:3.8-slim
 
 
 ENV PYTHONUNBUFFERED=1
 
-RUN apt-get update && apt-get install -y libgl1-mesa-glx
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install\
+    libgl1\
+    libgl1-mesa-glx \ 
+    libglib2.0-0 -y
 
-# Set the working directory in the container
+
 WORKDIR /code
 
-# Copy the requirements file into the container
+
 COPY requirements.txt /code/
 
-# Install the project dependencies
-RUN pip install -r requirements.txt
 
-# Copy the project code into the container
+RUN pip install --no-cache-dir -r requirements.txt
+
+
 COPY . /code/
 
-# Expose the port for the Django server
+
 EXPOSE 8000
 
-# Define the command to run the Django server
+
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
